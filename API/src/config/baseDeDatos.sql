@@ -20,3 +20,7 @@ insert into generos(genero) values
 ('accion');
 insert into peliculas(titulo,director,anio,genero) values
 ('Rambo: Primera sangre','Ted Kotcheff',1982,1);
+create view peliculas_Genero as
+select peliculas.id, titulo,director,anio,generos.genero from generos
+inner join peliculas on generos.id = peliculas.genero;
+select *from peliculas_Genero;

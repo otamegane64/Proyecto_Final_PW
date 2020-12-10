@@ -5,6 +5,7 @@ import Peliculas from '../views/Peliculas.vue'
 import Generos from '../views/Generos.vue'
 import AgregarGenero from '../views/AgregarGenero.vue'
 import AgregarPelicula from '../views/AgregarPelicula.vue'
+import EditarPelicula from '../views/EditarPelicula.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     path: '/agregar_pelicula',
     name: 'AgregarPelicula',
     component: AgregarPelicula
+  },
+  {
+    path: '/editar-pelicula/:id',
+    name: 'EditarPelicula',
+    component: EditarPelicula
   }
 
  

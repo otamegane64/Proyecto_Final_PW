@@ -44,6 +44,21 @@ export default new Vuex.Store({
       .then(onComplete)
       .catch(onError)
 
+    },
+    editarPelicula({commit}, {id, params, onComplete, onError}) {
+      axios.put(`http://localhost:3000/pelicula/${id}`, params)
+      .then(onComplete)
+      .catch(onError)
+    },
+    eliminarPelicula({commit}, {id, onComplete, onError}) {
+      axios.delete(`http://localhost:3000/pelicula/${id}`)
+      .then(onComplete)
+      .catch(onError)
+    },
+    obtenerPelicula({commit}, {id, onComplete, onError}) {
+      axios.get(`http://localhost:3000/pelicula/${id}`)
+      .then(onComplete)
+      .catch(onError)
     }
   },
   getters:{

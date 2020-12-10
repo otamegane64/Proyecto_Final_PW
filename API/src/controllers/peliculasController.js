@@ -30,6 +30,22 @@ function obtenerUnaPelicula(req,res){
         })
     }
 }
+/*function peliculaPorGenero(req,res){
+    if(connection){
+        const genero = req.body;
+        let sql = 'select * from peliculas_Genero where genero = ? '
+        connection.query(sql,[genero],(err,pelicula)=>{
+            if(err){
+                res.json(err);
+            }else{
+                let mensaje ="";
+                if(pelicula === undefined || pelicula.length ===0)
+                mensaje = "pelicula no encontrada"
+                res.json({data: pelicula, mensaje:mensaje})
+            }
+        })
+    }
+}*/
 function crearPelicula(req,res){
     if(connection){
         const pelicula = req.body;
@@ -103,4 +119,5 @@ module.exports ={
     crearPelicula,
     editarPelicula,
     eliminarPelicula
+ //   peliculaPorGenero
 }

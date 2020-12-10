@@ -33,23 +33,26 @@
         v-model="pelicula.genero"
           label="Genero"
           id="genero"
-          placeholder="Ingrese el genero de la pelicula"
+          placeholder="Ingrese el ID del genero"
           mensajeError="El genero es obligatorio"
           :error="erroresValidacion && !validacionGenero"
           class="mb-2"/>
           <b-button type="submit" variant="success" class="float-right mt-3">Guardar</b-button>
       </b-form>
+      <Tabla :fields="campos" :items="allGeneros"/>
        
   </div>
 </template>
 
 <script>
 import Input from '../components/Input'
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
+import Tabla from '../components/Tabla.vue'
 export default {
     name: 'AgregarPelicula',
     components:{
-        Input
+        Input,
+        Tabla
     },
     data(){
         return{
@@ -59,7 +62,12 @@ export default {
                 anio: '',
                 genero: '',
             },
-            erroresValidacion: false
+            erroresValidacion: false,
+             campos:[
+                {key: 'id',label:'Clave'},
+                {key: 'genero',label:'Genero'}
+
+            ]
         }
     },
     computed:{
@@ -87,10 +95,12 @@ export default {
                 this.pelicula.genero !== undefined &&
                 this.pelicula.genero.trim() !== ''
             )
-        }
+        },
+        ...mapGetters(['allGeneros'])
+        
     },
     methods:{
-        ...mapActions(['agregarPelicula']),
+        ...mapActions(['agregarPelicula','setGenero']),
         guardarPelicula(){
             if(this.validacionTitulo && this.validacionDirector 
             && this.validacionAnio && this.validacionGenero){
@@ -117,6 +127,9 @@ export default {
                 this.erroresValidacion = true
             }
         }
+    },
+    created(){
+        this.setGenero();
     }
 
 }
